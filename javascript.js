@@ -6,6 +6,7 @@ const oprs = document.querySelectorAll('.opr')
 const equals = document.querySelector('.equals')
 const bsp = document.querySelector('.bsp')
 const clear = document.querySelector('.clear')
+const negpos = document.querySelector('.negpos')
 
 let num1 = null;
 let num2 = null;
@@ -35,7 +36,7 @@ numbers.forEach((number) => {
     number.addEventListener('click', () => {
     let input = number.textContent;
 
-    if (Number(display.textContent) < 1 ){
+    if (Number(display.textContent) == 0 ){
         display.textContent = ''
     } else if (num1 != null && canType == false){
         display.textContent = ''
@@ -107,4 +108,10 @@ bsp.addEventListener('click', () => {
     if (newdisplay.length < 1){
         display.textContent = 0
     }
+})
+
+negpos.addEventListener('click', () => {
+    screen = Number(display.textContent)
+    newscreen = screen * -1;
+    display.textContent = newscreen
 })
