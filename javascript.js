@@ -25,6 +25,12 @@ function calculate(num1, oper, num2) {
     }
 }
 
+function clearOpr(){
+    oprs.forEach((operator) => {
+        operator.style.cssText = 'background-color: white;'
+    })
+}
+
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
     let input = number.textContent;
@@ -46,10 +52,12 @@ oprs.forEach((operator) => {
     let input = operator.textContent;
         if (num1 == null){
         oper = input
+        operator.style.cssText = "background-color: red";
         num1 = Number(display.textContent)
         console.log(`num1: ${num1}`)
         canType = false;
         } else if (num1 != null && oper != null){
+            clearOpr()
             num2 = Number(display.textContent)
             console.log(`num2: ${num2}`)
             result = calculate(num1, oper, num2)
@@ -57,6 +65,7 @@ oprs.forEach((operator) => {
             num1 = result
             canType = false;
             oper = input
+            operator.style.cssText = "background-color: red";
             console.log(`oper: ${oper}`)
         } else if (oper == null){
             oper = input
@@ -77,5 +86,6 @@ equals.addEventListener('click', () => {
         console.log(`num1: ${num1}`)
         console.log(`num2: ${num2}`)
         console.log(`oper: ${oper}`)
+        clearOpr()
     }
 })
