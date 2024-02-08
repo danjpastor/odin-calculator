@@ -50,7 +50,7 @@ numbers.forEach((number) => {
 oprs.forEach((operator) => {
     operator.addEventListener('click', () => {
     let input = operator.textContent;
-        if (num1 == null){
+        if (num1 == null && display.textContent != 0){
         oper = input
         operator.style.cssText = "background-color: red";
         num1 = Number(display.textContent)
@@ -87,5 +87,24 @@ equals.addEventListener('click', () => {
         console.log(`num2: ${num2}`)
         console.log(`oper: ${oper}`)
         clearOpr()
+    }
+})
+
+clear.addEventListener('click', () => {
+    num1 = null;
+    num2 = null;
+    oper = null;
+    display.textContent = 0
+    clearOpr()
+})
+
+bsp.addEventListener('click', () => {
+    screen = display.textContent
+    screenArray = screen.split('')
+    screenArray.pop()
+    newdisplay = screenArray.join('')
+    display.textContent = newdisplay
+    if (newdisplay.length < 1){
+        display.textContent = 0
     }
 })
