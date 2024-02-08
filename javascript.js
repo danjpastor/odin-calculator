@@ -78,6 +78,7 @@ oprs.forEach((operator) => {
         } else if (oper == null){
             oper = input
             canType = false
+            operator.style.cssText = "background-color: red";
         }
     });
 });
