@@ -7,31 +7,37 @@ const equals = document.querySelector('.equals')
 const bsp = document.querySelector('.bsp')
 const clear = document.querySelector('.clear')
 const negpos = document.querySelector('.negpos')
+const dec = document.querySelector('.decimal')
 
+// Set up empty Variables for Operations
 let num1 = null;
 let num2 = null;
 let oper = null;
 
+// Toggle variable to clear screen before typing the next number.
 canType = true;
 
+// Basic function to perform arithmatic
 function calculate(num1, oper, num2) {
     if (oper == '+'){
-        return Number(num1) + Number(num2)
+        return parseFloat((Number(num1) + Number(num2)).toFixed(2));
     }else if (oper == '-'){
-        return num1 - num2
+        return parseFloat((num1 - num2).toFixed(2));
     }else if (oper == '*'){
-        return num1 * num2
+        return parseFloat((num1 * num2).toFixed(2));
     }else if (oper == '/'){
-        return num1 / num2
+        return parseFloat((num1 / num2).toFixed(2));
     }
 }
 
+// reset function to turn off operator active states
 function clearOpr(){
     oprs.forEach((operator) => {
         operator.style.cssText = 'background-color: white;'
     })
 }
 
+// Loops through each number button and creates an event listener to type the number to the display.
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
     let input = number.textContent;
@@ -48,6 +54,7 @@ numbers.forEach((number) => {
     });
   });
 
+// Operator logic when pressing an operrator button
 oprs.forEach((operator) => {
     operator.addEventListener('click', () => {
     let input = operator.textContent;
@@ -76,7 +83,7 @@ oprs.forEach((operator) => {
 });
 
 equals.addEventListener('click', () => {
-    if (num1 != null || display.textContent != ''){
+    if (num1 != null && display.textContent != ''){
         num2 = display.textContent
         result = calculate(num1, oper, num2)
         display.textContent = result
@@ -88,8 +95,9 @@ equals.addEventListener('click', () => {
         console.log(`num2: ${num2}`)
         console.log(`oper: ${oper}`)
         clearOpr()
-    }
-})
+    } else {
+        console.log("Requires Two Numbers and an operator")
+}})
 
 clear.addEventListener('click', () => {
     num1 = null;
@@ -114,4 +122,11 @@ negpos.addEventListener('click', () => {
     screen = Number(display.textContent)
     newscreen = screen * -1;
     display.textContent = newscreen
+})
+
+dec.addEventListener('click', () => {
+    screen = display.textContent
+    if (!screen.includes('.')){
+        display.textContent += dec.textContent
+    }
 })

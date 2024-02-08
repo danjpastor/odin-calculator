@@ -27,8 +27,10 @@ body {
     box-sizing: border-box;
     padding: 15px;
     text-align: right;
-    font-size: 50px;
+    font-size: 40px;
     border-top: 20px solid rgb(172, 172, 172);
+    overflow: auto;
+    overflow: auto;
 }
 
 #calcButtons {
